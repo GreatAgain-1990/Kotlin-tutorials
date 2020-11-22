@@ -25,7 +25,7 @@ suspend fun <T> CompletableFuture<T>.await(): T {
     }
     return suspendCancellableCoroutine {
         cancellableContinuation ->
-        cancellableContinuation.invokeOnCancellation {
+        cancellableContinuation.invokeOnCancellation {//支持取消
             cancel(true)
         }
 
