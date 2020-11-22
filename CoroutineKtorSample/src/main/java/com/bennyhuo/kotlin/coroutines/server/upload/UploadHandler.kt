@@ -20,7 +20,7 @@ val uploadDir = File("static").also { it.mkdirs() }
 
 fun Route.upload() {
     post("upload") {
-        val multipart = call.receiveMultipart()
+        val multipart = call.receiveMultipart()//一个接收函数，多媒体类型都可以上传，挂起函数
         val uploadedFiles = mutableListOf<UploadResponse>()
 
         multipart.forEachPart { part ->
