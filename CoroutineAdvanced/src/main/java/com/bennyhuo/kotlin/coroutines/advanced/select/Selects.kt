@@ -12,14 +12,23 @@ val localDir = File("localCache").also { it.mkdirs() }
 
 val gson = Gson()
 
+/**
+ * 从网络拿数据
+ */
 fun CoroutineScope.getUserFromApi(login: String) = async(Dispatchers.IO){
     gitHubServiceApi.getUserSuspend(login)
 }
 
+/**
+ * 从本地拿数据
+ */
 fun CoroutineScope.getUserFromLocal(login:String) = async(Dispatchers.IO){
     File(localDir, login).takeIf { it.exists() }?.readText()?.let { gson.fromJson(it, User::class.java) }
 }
 
+/**
+ * 缓存User数据，到本地
+ */
 fun cacheUser(login: String, user: User){
     File(localDir, login).writeText(gson.toJson(user))
 }
