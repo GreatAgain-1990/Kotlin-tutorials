@@ -9,9 +9,10 @@ import org.springframework.context.annotation.Bean
 import org.springframework.data.r2dbc.core.DatabaseClient
 import org.springframework.stereotype.Component
 
-@Component
+@Component//Spring注解
 class ApplicationConfiguration {
 
+    //两个参数都是有Spring自动注入
     @Bean
     fun runner(studentRepository: StudentRepository, db: DatabaseClient) = ApplicationRunner {
         val initDb = db.execute {

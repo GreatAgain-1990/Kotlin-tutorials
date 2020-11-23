@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 
 
 @RestController
-@RequestMapping("/rest/students")
+@RequestMapping("/rest/students")//定义访问路径
 class SimpleApi(val repository: StudentRepository) {
 
     @GetMapping("/")
